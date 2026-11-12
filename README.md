@@ -10,14 +10,12 @@
 
 | Release | 文件 | 大小 | 用途 |
 |---|---|---|---|
-| **v1.0.0** | **`Subahibi_HD_CHS_v1.0.0_full.zip`** | 17,122,088 B | **推荐**：主程序 + 四份词典 + 中文字体 |
+| **story-v1** | `Subahibi_HD_CHS_full_part1~3.zip` | 共 4,533,344,569 B | **推荐，一次到位**：程序 + 四份词典 + 字体 + 游戏素材 + 三份说明，解压即得完整安装树 |
+| v1.0.0 | `Subahibi_HD_CHS_v1.0.0_full.zip` | 17,122,088 B | 仅程序 + 词典 + 字体（已有素材时用） |
 | v1.0.0 | `Subahibi_HD_CHS.nro` | 8,178,787 B | 仅主程序 |
 | v1.0.0 | `dialogue_extra.bin` | 1,055,681 B | 仅更新汉化文本（不影响存档） |
-| **story-v1** | `story_vol1.zip` | 1,410,917,945 B | 游戏素材 第 1 卷 |
-| story-v1 | `story_vol2.zip` | 1,579,091,347 B | 游戏素材 第 2 卷 |
-| story-v1 | `story_vol3.zip` | 1,512,968,923 B | 游戏素材 第 3 卷 |
 
-主程序、四份词典、字体在 **v1.0.0**；游戏素材 `story/`（4.29 GB，55 个原版 `data*.arc`）在 **story-v1** 分三卷。两处都下载后即可完整安装。
+**story-v1** 的三卷分卷里已经是完整安装树（程序 + 四份词典 + 字体 + `story/` 55 个原版 `data*.arc` + `INSTALL.md` / `GAMEPLAY.md` / `README-FIRST.txt`），解压到 SD 卡即可玩。`v1.0.0` 保留给「已有素材、只想更新程序或译文」的场景。
 
 下载页：[v1.0.0](https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/v1.0.0) ｜ [story-v1](https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/story-v1)
 
@@ -25,19 +23,17 @@
 
 ## 游戏素材（私有 Release）
 
-\story/\（55 个原版 \data*.arc\，合计 4,502,971,909 B）体积 4.29 GB，超出 GitHub 普通提交与 LFS 免费额度，因此放在**私有 Release 分卷**里：
-
-<https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/story-v1>
+完整安装树放在 **story-v1** 的三卷分卷里（4.53 GB，65 个文件）：
 
 | 分卷 | 大小 | SHA256 |
 |---|---|---|
-| \story_vol1.zip\ | 1,410,917,945 B | ca0270…327d96f2\ |
-| \story_vol2.zip\ | 1,579,091,347 B | 8bf56df…90bf055a\ |
-| \story_vol3.zip\ | 1,512,968,923 B | \8912dbea…5a22886a\ |
+| `Subahibi_HD_CHS_full_part1.zip` | 1,410,918,137 B | `3b0fe646…0fe5b497` |
+| `Subahibi_HD_CHS_full_part2.zip` | 1,579,091,795 B | `98ca2c6c…be5a90eb` |
+| `Subahibi_HD_CHS_full_part3.zip` | 1,543,346,073 B | `15c0e1b2…61e0cc3f` |
 
-还原：三个分卷解压到同一目录，得到 \story/\，再放到 \sdmc:/switch/subahibi_pc_native_hd_qa/story/\。
+解压后得到 `switch/subahibi_pc_native_hd_qa/`（程序 + `chs/` 四份词典 + `font/` + `story/`）以及 `INSTALL.md`、`GAMEPLAY.md`、`README.md`、`README-FIRST.txt`。
 
-> 素材版权归 KeroQ 所有，**仅供本人使用，禁止分发**。
+> 素材版权归 KeroQ 所有，**仅供本人使用，禁止分发**；因此放在私有仓库的 Release 里。
 
 ---
 
