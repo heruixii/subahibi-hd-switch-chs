@@ -1,7 +1,7 @@
-> **本分支 = 完整版（原版内容 + 全量汉化）**
+> **本分支 = 和谐版（屏蔽指定 CG 与语音）**
 >
-> 安装：Release `v1.0.0`（程序/词典/字体）+ Release `story-v1`（游戏素材）。
-> 和谐版见 `clean` 分支与 Release `v2.0-clean`。
+> 安装：Release `v2.0-clean`（覆盖层 + 13 个改写归档）+ 完整版程序与素材。
+> 完整版见 `master` 分支与 Release `v1.0.0` / `story-v1`。
 
 # 素晴日 HD 简体中文移植（Switch）
 
