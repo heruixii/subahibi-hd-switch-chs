@@ -6,13 +6,36 @@
 
 ---
 
+## 下载
+
+| 文件 | 大小 | 用途 |
+|---|---|---|
+| **`Subahibi_HD_CHS_v1.0.0_full.zip`** | 17,122,088 B | **推荐**：主程序 + 四份词典 + 中文字体，解压即用 |
+| `Subahibi_HD_CHS.nro` | 8,178,787 B | 仅主程序 |
+| `dialogue_extra.bin` | 1,055,681 B | 仅更新汉化文本（不影响存档） |
+
+完整包已包含除 `story/` 之外的全部文件。**`story/` 是游戏剧本与资源，来自你购买的正版 PC 版，因版权原因不在发布内。**
+
+下载页：<https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/v1.0.0>
+
+---
+
+## 文档
+
+| 文件 | 内容 |
+|---|---|
+| [`INSTALL.md`](INSTALL.md) | **安装教程**：完整包结构、`story/` 准备、逐步安装、首次启动自检、字体硬性要求、校验值 |
+| [`GAMEPLAY.md`](GAMEPLAY.md) | **操作教程**：完整按键对照表、光标使用与精瞄、存读档流程、设置菜单、故障排查 |
+
+---
+
 ## 当前状态
 
 | 项 | 状态 |
 |---|---|
 | 版本 | 1.0.0（2026-11-12） |
 | 平台 | Switch，Atmosphere 1.11.0 / 固件 22.0.0（emuMMC 实测） |
-| 启动方式 | hbmenu 启动 NRO（已在 hbmenu 显示图标 / 名称 / 发布者） |
+| 启动方式 | hbmenu 启动 NRO（已显示图标 / 名称 / 发布者） |
 | 汉化覆盖 | 61,291 / 61,539 条消息 = **99.60%**；可译范围内 100% |
 | 覆盖层条目 | 13,715 条 |
 | 残留错误率 | 0.34%（295 条同口径抽样，1 条错） |
@@ -37,6 +60,18 @@
   | `dialogue_extra.bin` | 13,715 | **本项目的覆盖层**（`SBCHS004`） |
 
 - **质量方法**：全量逐条复审 3 轮 + 随机抽样审计（严口径），累计修正 1,450+ 条
+
+### 字体
+
+引擎只接受固定的一份字体，位置与尺寸都写死：
+
+```
+sdmc:/switch/subahibi_pc_native_hd_qa/font/NotoSansSC_wght.ttf
+必须恰好 17,772,300 B
+SHA256 a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da
+```
+
+Noto Sans SC，SIL Open Font License 1.1，允许再分发。
 
 ### 光标
 
@@ -63,29 +98,28 @@ NRO 尾部追加 `ASET` 段（结构依据官方 switchbrew `elf2nro.c`）：
 
 ---
 
-## 安装
+## 目录结构
 
-SD 卡目录结构：
+完整包解压后：
 
 ```
-sdmc:/
-└─ switch/
-   └─ subahibi_pc_native_hd_qa/
-      ├─ Subahibi_HD_CHS.nro        ← 主程序（含图标与名称）
-      ├─ chs/
-      │  ├─ dialogue_cp932_gbk.bin
-      │  ├─ opening_narration_private_cp932_gbk_26.bin
-      │  ├─ unvoiced_unique_voice_anchor_cp932_gbk_759.bin
-      │  └─ dialogue_extra.bin      ← 本项目的汉化覆盖层
-      ├─ story/                     ← 游戏剧本与资源（需自行从正版提取）
-      ├─ font/                      ← 字体
-      ├─ UserData/                  ← 存档
-      └─ persistent_save_slots/
+switch/subahibi_pc_native_hd_qa/
+├─ README-FIRST.txt                                  快速上手说明
+├─ Subahibi_HD_CHS.nro                               主程序
+├─ chs/
+│  ├─ dialogue_cp932_gbk.bin                         基线词典 34,974 条
+│  ├─ opening_narration_private_cp932_gbk_26.bin     开场旁白 26 条
+│  ├─ unvoiced_unique_voice_anchor_cp932_gbk_759.bin 无语音锚点 759 条
+│  └─ dialogue_extra.bin                             汉化覆盖层 13,715 条
+└─ font/
+   └─ NotoSansSC_wght.ttf                            中文字体
 ```
 
-**启动**：hbmenu → 选「素晴日 HD 汉化版」→ 进入。
+还需要自己放入：
 
-存档位于 `UserData/` 与 `persistent_save_slots/`，升级覆盖层不影响存档。
+```
+switch/subahibi_pc_native_hd_qa/story/   游戏剧本与资源（自备）
+```
 
 ---
 
@@ -109,7 +143,7 @@ $ gcc t.c -o "D:\tmp\中文\p.exe"
 ld.exe: cannot open output file D:\tmp\中文\p.exe: No such file or directory
 ```
 
-本仓库的 `tools/dsh_build_shim.py` 在调用层解决这个问题：拦截 `subprocess`，把 `-o <含中文路径>` 改写为 ASCII 暂存路径，编译成功后再用 Python 复制回原位置。读取中文路径本身是正常的，只有写入有问题。
+本仓库的 `tools/dsh_build_shim.py` 在调用层解决这个问题：拦截 `subprocess`，把 `-o <含中文路径>` 改写为 ASCII 暂存路径，编译成功后再用 Python 复制回原位置。读取中文路径本身正常，只有写入有问题。
 
 ```python
 import dsh_build_shim          # 装上补丁
@@ -179,11 +213,11 @@ import <构建模块>; <构建模块>.main()
 
 ---
 
-## 目录结构
+## 目录结构（仓库）
 
 ```
 docs/          每轮开发记录与结论（287 篇）
-tools/         字典构建、校验、抽样、构建 shim
+tools/         字典构建、校验、抽样、构建 shim、ASET 追加
 translation/   权威修正表、最终覆盖层源与二进制
 engine/        引擎侧补丁（光标绘制等）
 ```
@@ -193,7 +227,8 @@ engine/        引擎侧补丁（光标绘制等）
 ## 法律声明
 
 - **引擎**：OpenBGI，GPL-2.0。本仓库只提供补丁与构建说明，不重分发引擎源码；如需构建请从上游获取。
-- **游戏素材**：《素晴らしき日々》的剧本、图像、音频版权归 KeroQ 所有，本仓库**不含任何素材**。
+- **游戏素材**：《素晴らしき日々》的剧本、图像、音频版权归 KeroQ 所有，本仓库与发布包**不含任何游戏素材**。
+- **字体**：Noto Sans SC，SIL Open Font License 1.1，允许随包再分发。
 - **汉化文本**：本项目的译文为二次创作，仅供已购买正版游戏的玩家在自制程序环境使用。请勿用于商业用途。
 - **使用风险**：自制程序环境下的操作风险自负；本移植不含任何绕过正版校验的功能。
 
@@ -204,23 +239,3 @@ engine/        引擎侧补丁（光标绘制等）
 - OpenBGI 引擎作者与 GPL-2.0 社区
 - libnx / devkitPro / SDL2
 - 上游汉化组的既有人名与术语参考
-
----
-
-## 文档
-
-| 文件 | 内容 |
-|---|---|
-| [INSTALL.md](INSTALL.md) | **安装教程**：必备文件清单、目录结构、逐步安装、升级卸载、常见问题、校验值 |
-| [GAMEPLAY.md](GAMEPLAY.md) | **操作教程**：完整按键对照表、光标使用、存读档流程、设置菜单、故障排查 |
-
-> ⚠️ **本发布包不能开箱即玩。** Release 内只有主程序与汉化覆盖层；story/ 游戏资源、chs/ 三份基线词典、ont/ 中文字体需自行准备，详见 INSTALL.md 第一节。
-
-
-## 下载
-
-| 文件 | 大小 | 用途 |
-|---|---|---|
-| **Subahibi_HD_CHS_v1.0.0_full.zip** | 17,122,088 B | **推荐**：主程序 + 四份词典 + 字体，解压即用 |
-| Subahibi_HD_CHS.nro | 8,178,787 B | 仅主程序 |
-| dialogue_extra.bin | 1,055,681 B | 仅更新汉化文本 |
