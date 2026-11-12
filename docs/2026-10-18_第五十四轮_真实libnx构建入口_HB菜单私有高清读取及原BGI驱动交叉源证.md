@@ -1,0 +1,35 @@
+# 第五十四轮：libnx构建入口、HB菜单高清读图与BGI驱动状态恢复
+
+日期：2026-10-18
+工程：D:/switch游戏/素晴日/素晴日整合/1.游戏合集/移植新版素晴日ns
+
+## 实际移植工作
+
+修复 Switch SDL2_image 目标源码工程（03_脚本工作区/P198_Switch_SDL2高清运行壳_非游戏非安装）的正式Make依赖。依据switchbrew/switch-examples的官方SDl2例子，增加了外层all到build、内层all到NRO、NRO到ELF、ELF到C对象的链式依赖，并校验4条真实Make TAB命令。缺devkitPro时仍严格拒绝构建，不允许假装已经生成Switch NRO。
+
+正常从Homebrew Menu启动时可能没有附加用户参数：改为零附加参数入口，只读独立私有媒体目录 sdmc:/switch/subahibi_pc_native_hd_qa/assets、起始真实原BGI源视野x2048。缺少原PNG、13源原版压缩字节SHA不同、SRC范围越界必须失败。仍支持明确提供私有源目录和源X的调试模式，不会读写已安装NS游戏、TitleID、原NS ROMFS或玩家Savedata。主机虚拟SDL2接口已实际测试零附加参数4帧逻辑1280x960、正确纹理缓存清理及单个不完整参数拒绝。
+
+Windows PowerShell独立只读devkitPro先决预检确认：devkitPro根、libnx switch_rules、AArch64编译器、libnx静态库、switch SDL2/SDL2_image目标头与链接库共8个项目未安装；没有下载、安装或更改系统，也没有完整可用的NRO或安装包。这是目前真实NS端试验的硬阻断，不能靠主机模拟程序绕开。
+
+原BGI动画源码进一步跨模块验证：scrgrp4.bpd L02487来源后日谈f30c精灵0原速度-500，宽度大于1280且源窗口x可达10486。scrdrv.bpd L02210读取同一0x104b8偏移的12字节状态表，以32个原sprite槽扫描，按激活标记调用L0337d，源数据处理继续到L0357f。此证据证明滚动状态有生产者与驱动消费者，但不能证明实际定点速度的时间单位、画面最终排序、动态卷轴回卷接缝规则。严禁凭该链条把真实剧情时钟谎称已还原。
+
+## 质量规则与未解决边界
+
+前阶段已核验1505原高清PNG、33454原OGG、5部实际1280x960 25fps MPEG1/48kHz MP2源电影、C99音画整数样本时钟2小时无累计漂移。全部版权PC/NS游戏资源不打包进新工程。主机原生SDL2 mock并不是Switch实际GPU；Switch编译/真实显示、原BGI图层优先级10/15绘制方向、电影/MP2真实端侧解码、旧玩家存档隔离均未完成。正式安装依旧BLOCKED_NOT_SAFE_TO_INSTALL。
+
+独立P208报告：06_测试记录/P46_Switch_Libnx官方Makefile_无参数HB菜单只读原图入口和SDK真实缺失_不得假NRO.json
+P210源代码链报告：06_测试记录/P47_原BGI_f30c精灵滚动状态由scrgrp4写入scrdrv遍历32项及后端计时未证.json
+完整回归：06_测试记录/P46_第五十四轮_libnx完整Makefile_hbmenu源HD只读及f30c_BGI32精灵状态全量门禁.log
+
+官方构建源码：https://github.com/switchbrew/switch-examples/blob/master/graphics/sdl2/sdl2-simple/Makefile
+环境说明：https://switchbrew.org/wiki/Setting_up_Development_Environment
+
+
+## 真实完整质量回归（P211已通过）
+
+最终实际执行全工程统一质量门禁：**282个Python工具检查、91项受保护PC/NS原件SHA、4324个历史私有QA文件、P150私有979件（含965条已批准原高清配音）、1505份未缩图原PNG、33454份未转码原OGG及5段源1280x960 25fps MPEG1+48kHz MP2电影资料**全面复核通过。原生BGI滚动视野16个RGBA完全一致、P208修复的标准Make层级与HB菜单无附加参数启动主机SDL模拟、devkitPro八项真实缺失事实、P210跨模块BGI滚动状态生产和消费者追踪均已纳入强制门禁。
+
+重要：这不是已在Switch上运行；仍然没有开发工具链或NS目标NRO，实际GPU、图层优先级排序、f30c时钟和旧玩家Save实机隔离均需进一步验证。继续保持BLOCKED_NOT_SAFE_TO_INSTALL。没有创建安装包或把版权游戏媒体打包公开。
+
+最终日志：06_测试记录/P46_第五十四轮_libnx完整Makefile_hbmenu源HD只读及f30c_BGI32精灵状态全量门禁.log
+最终快照：06_测试记录/2026-10-18_第五十四轮_官方Makefile修复_HB菜单只读高清入口_BGIf30c精灵消费者_282工具最终质量快照.json

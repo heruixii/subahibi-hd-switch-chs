@@ -1,0 +1,51 @@
+# 第七十一轮：原PC BGI.exe只读机器码取证与276个BP真实二进制handler指令地址
+
+日期：2026-10-19
+项目路径：D:/switch游戏/素晴日/素晴日整合/1.游戏合集/移植新版素晴日ns
+
+## 第一项：从原BGI.EXE寻找真正BP虚拟机
+
+本轮只读分析本游戏原2018年BGI.exe，1216512字节，SHA256：
+f52f44c9a30cf061c286b6a16f4560802e307309c9610e08169f29ce9da94bf1
+
+原程序属于Windows Intel PE32 i386，本地可信objdump分析临时英文路径副本，得348841行反汇编、23608条CALL指令、240个间接JMP/CALL站点和3处0x56常量操作候选。源BGI.exe未被执行或改写，临时副本已经清理。当前所有0x56候选**都没有被可靠证明是原BP低层VM的0x56处理器**，原title._bp在偏移0x0a05的未知opcode参数宽度、栈效果及行为仍然未知。不能根据0x56机器码立即数字面值猜测BP虚拟机操作码。
+
+P286工具：
+01_工具脚本/verify_p286_original_BGI_exe_i386_opcode56_static_dispatch_candidates_readonly.py
+
+报告：
+06_测试记录/P98_原2018_PC_BGI原引擎PE32_D3D9静态机器码_VM分发候选与0x56比较证据_只读非执行.json
+
+## 第二项：真正原编译BP函数处理器地址逐项验证
+
+以前P273已由54份反汇编文本的SHA认定系统BP里有276项注册处理器，130份原场景120种外部opcode合计130495次调用都找到注册handler。但反汇编文本标签可以从实际指令边界偏移出错，本轮改由真正BP二进制逐项直接验证。
+
+新增独立ISO C99头文件、源码、主机验证：
+03_脚本工作区/P287_原BGI120剧情外部指令对应原BP二进制276处理器指令边界_不执行/
+- p287_bp_binary_handler_address.h
+- p287_bp_binary_handler_address.c
+- p287_host_original_276_handlers_main.c
+
+程序直接只读打开原BP九个注册来源模块的编译二进制文件，先通过P282 C99验证整段BP opcode长度、所有控制流标签和字符串位置，再从实际编译字节对照276个注册源处理器地址，逐项要求地址是完整一条BP指令的起点。随后对真正130场景使用的120种外部opcode全部逐项重复核验，关联全部130495次外部调用。结果：276/276原BP处理器地址全部真实存在、120种真实使用外部opcode全部通过，130495次原剧情引用都有合法handler起点。
+
+新增C99主机负例5项，包括明确用scrmsg._bp注册处理器后面的short立即数中间偏移（不能作为函数入口）、UINT32_MAX越界、仅在内存中破坏BP文件头、以及title._bp未知opcode0x56的拒绝。所有原BP二进制及存档不变。编译C99验证核心为实际ARM64 ELF64 ET_REL目标对象，但这仍非具备BP解释器或可启动剧情的完整Switch SDK二进制。
+
+P288跨层强制QA工具：
+01_工具脚本/verify_p288_original_PE_and_276_BP_real_binary_handlers_130495_C99_ARM64.py
+
+报告：
+06_测试记录/P99_原BGI130场景130495次外部调用276项真BP二进制指令入口_C99_5畸形拒绝_真ARM64与原PE只读对照.json
+
+## 保留真实移植边界
+
+确认BP handler指令入口地址不代表实现BP VM执行。原高层BGI故事VM、低层BP系统VM，原title opcode0x56、栈、call/ret、变量、中文字幕、对话选项、真实图形混合、音频/电影时钟和物理Switch GPU/DAC/Save验收尚未实现。旧ARM64高清/原OGG NRO是诊断程序，不是完整游戏。历史第三方SDK隔离数据头只用于交叉源编译，不执行其未验证二进制，也不误报为已在真实Switch硬件运行。
+
+原PC媒体/旧ONS NS资源/现有NRO/玩家Save不更改，正式发布状态BLOCKED_NOT_SAFE_TO_INSTALL。
+
+本轮整项目QA日志：
+06_测试记录/P100_第七十一轮_原2018BGIexe机器码只读与276原BP二进制有效handler及130495真实调用_全量门禁.log
+
+
+## 第七十一轮中央全部324工具正式PASS
+
+再跑完整324个工具并全部通过：91份受保护源SHA、4324份历史QA/旧NS资源、1505张原PC高清无损PNG、33454份原OGG码流核对。新P286真正原PC BGI.exe只读PE32 2018引擎机器码来源SHA保持不变，P288重读9个系统BP真正编译二进制，276个原BP注册处理入口全部处于确切BP指令起点（包括原130剧情使用的120种外部opcode、共130495次引用）；5项故障目标拒绝及真正AARCH64 ELF64 ET_REL C99对象通过。原先P261真正AARCH64高清/原OGG诊断NRO SHA未修改。\n\n不可变第71轮总QA快照：06_测试记录/2026-10-19_第七十一轮_2018BGIexe只读和276原BP真实二进制入口ARM64及324工具不可变快照.json\n\n这不是可执行的原BGI双层VM或本作Switch游戏，title BP未知opcode0x56长度/副作用与中文故事/选择支/图层/影音真机性能未实测，继续BLOCKED_NOT_SAFE_TO_INSTALL。

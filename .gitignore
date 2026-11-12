@@ -1,0 +1,26 @@
+﻿# 排除游戏素材与本地环境
+*.nro
+*.nsp
+*.xci
+*.zip
+*.7z
+story/
+font/
+UserData/
+persistent_save_slots/
+04_HD转换样本/
+07_工具链环境/
+05_NS测试构建/
+03_脚本工作区/
+02_清单与差异/
+06_测试记录/
+
+# 系统与编辑器
+Thumbs.db
+desktop.ini
+.vscode/
+__pycache__/
+*.pyc
+
+release/
+
