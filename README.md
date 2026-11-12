@@ -1,3 +1,8 @@
+> **本分支 = 完整版（原版内容 + 全量汉化）**
+>
+> 安装：Release `v1.0.0`（程序/词典/字体）+ Release `story-v1`（游戏素材）。
+> 和谐版见 `clean` 分支与 Release `v2.0-clean`。
+
 # 素晴日 HD 简体中文移植（Switch）
 
 把 PC 版《素晴らしき日々 ～不連続存在～ 全语音 HD 版》移植到 Nintendo Switch（自制程序环境），并完成简体中文本地化。
