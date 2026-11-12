@@ -20,6 +20,24 @@
 
 ---
 
+## 游戏素材（私有 Release）
+
+\story/\（55 个原版 \data*.arc\，合计 4,502,971,909 B）体积 4.29 GB，超出 GitHub 普通提交与 LFS 免费额度，因此放在**私有 Release 分卷**里：
+
+<https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/story-v1>
+
+| 分卷 | 大小 | SHA256 |
+|---|---|---|
+| \story_vol1.zip\ | 1,410,917,945 B | ca0270…327d96f2\ |
+| \story_vol2.zip\ | 1,579,091,347 B | 8bf56df…90bf055a\ |
+| \story_vol3.zip\ | 1,512,968,923 B | \8912dbea…5a22886a\ |
+
+还原：三个分卷解压到同一目录，得到 \story/\，再放到 \sdmc:/switch/subahibi_pc_native_hd_qa/story/\。
+
+> 素材版权归 KeroQ 所有，**仅供本人使用，禁止分发**。
+
+---
+
 ## 文档
 
 | 文件 | 内容 |

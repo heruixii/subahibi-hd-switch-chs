@@ -33,17 +33,37 @@ switch/subahibi_pc_native_hd_qa/
 
 ---
 
-## 二、唯一需要你自己准备的东西：`story/`
+## 二、游戏素材 story/
 
-`story/` 放的是游戏剧本与资源，来自正版 PC 版的 `data*.arc`。本移植不提供、也不分发任何游戏素材。
+story/ 是 55 个原版 data*.arc，合计 **4,502,971,909 B（4.29 GB）**，不随仓库提交，放在私有 Release：
 
-准备方式：从你自己购买的正版《素晴らしき日々 全语音 HD 版》中提取，然后放到：
+<https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/story-v1>
 
-```
+### 还原
+
+| 分卷 | 大小 | SHA256 |
+|---|---|---|
+| story_vol1.zip | 1,410,917,945 B | 32ca02709ce9a56e7ece9ae3dc075d208a01b62629498434090121c9327d96f2 |
+| story_vol2.zip | 1,579,091,347 B | 48bf56dfc3b0a3ec0a3dc3662c9988ffa1f687ff47a12b8ddeaebb6b90bf055a |
+| story_vol3.zip | 1,512,968,923 B | 8912dbea41ee8fbe0c4c5629541156fdc2b7f7049008b6188b47d4585a22886a |
+
+三个分卷**解压到同一个目录**（zip 为存储模式，无压缩），得到：
+
+`
+story/
+├─ data01000.arc
+├─ data01101.arc
+├─ ...
+└─ data05010.arc      （共 55 个）
+`
+
+放到：
+
+`
 sdmc:/switch/subahibi_pc_native_hd_qa/story/
-```
+`
 
-> 提取与转换流程见仓库 `docs/` 中 2026-10 各轮的记录（ARC 解包、资源转换、剧本文件布局）。
+> 素材版权归 KeroQ 所有，仅供本人使用，禁止分发。
 
 ---
 
