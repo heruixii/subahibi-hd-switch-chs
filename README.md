@@ -2,21 +2,24 @@
 
 把 PC 版《素晴らしき日々 ～不連続存在～ 全语音 HD 版》移植到 Nintendo Switch（自制程序环境），并完成简体中文本地化。
 
-> **本仓库不包含任何游戏素材。** 引擎源码、图像、音频、剧本原文均不在本仓库内；使用前请自备正版游戏。
+> 仓库内只有源码、脚本、文档与汉化数据；**游戏素材 `story/` 放在私有 Release**（`story-v1`），版权归 KeroQ，仅供本人使用。
 
 ---
 
 ## 下载
 
-| 文件 | 大小 | 用途 |
-|---|---|---|
-| **`Subahibi_HD_CHS_v1.0.0_full.zip`** | 17,122,088 B | **推荐**：主程序 + 四份词典 + 中文字体，解压即用 |
-| `Subahibi_HD_CHS.nro` | 8,178,787 B | 仅主程序 |
-| `dialogue_extra.bin` | 1,055,681 B | 仅更新汉化文本（不影响存档） |
+| Release | 文件 | 大小 | 用途 |
+|---|---|---|---|
+| **v1.0.0** | **`Subahibi_HD_CHS_v1.0.0_full.zip`** | 17,122,088 B | **推荐**：主程序 + 四份词典 + 中文字体 |
+| v1.0.0 | `Subahibi_HD_CHS.nro` | 8,178,787 B | 仅主程序 |
+| v1.0.0 | `dialogue_extra.bin` | 1,055,681 B | 仅更新汉化文本（不影响存档） |
+| **story-v1** | `story_vol1.zip` | 1,410,917,945 B | 游戏素材 第 1 卷 |
+| story-v1 | `story_vol2.zip` | 1,579,091,347 B | 游戏素材 第 2 卷 |
+| story-v1 | `story_vol3.zip` | 1,512,968,923 B | 游戏素材 第 3 卷 |
 
-完整包已包含除 `story/` 之外的全部文件。**`story/` 是游戏剧本与资源，来自你购买的正版 PC 版，因版权原因不在发布内。**
+主程序、四份词典、字体在 **v1.0.0**；游戏素材 `story/`（4.29 GB，55 个原版 `data*.arc`）在 **story-v1** 分三卷。两处都下载后即可完整安装。
 
-下载页：<https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/v1.0.0>
+下载页：[v1.0.0](https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/v1.0.0) ｜ [story-v1](https://github.com/heruixii/subahibi-hd-switch-chs/releases/tag/story-v1)
 
 ---
 
