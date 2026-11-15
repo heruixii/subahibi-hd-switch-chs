@@ -23,7 +23,7 @@ switch/subahibi_pc_native_hd_qa/
 | ① | `v1.1-full-standalone` | **完整安装包（三卷）——推荐** |
 | ② | `v2.1-clean-standalone` | 和谐版完整安装包（三卷），装在 `subahibi_clean_hd_qa_chs/`，可与本版共存 |
 | ③ | `v1.0.0` | 仅程序与词典，用于后续小幅更新 |
-| ④ | `v2.0-clean` | 和谐版替换补丁（已有完整版时用） |
+| ④ | `v2.0-clean` | 和谐版替换补丁（**旧版，113 id**，已被 ② 取代） |
 | — | `story-v1` | 旧素材分卷，内容已含在 ① |
 
 ## 数据目录
