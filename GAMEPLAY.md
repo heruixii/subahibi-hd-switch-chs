@@ -1,3 +1,17 @@
+> ## ⚠️ 启动方式（必读）
+>
+> **必须「按住 R 键 + 点任意已安装游戏」进入 hbmenu，不要从相册（Album）进。**
+>
+> | 进入方式 | 可用内存 | 结果 |
+> |---|---|---|
+> | 相册 → hbmenu | 约 400 MB（applet） | 加载第一张位图时分配失败：黑屏退回或崩溃（2168-0001） |
+> | 按住 R → hbmenu | 约 3 GB（title override） | 正常进入游戏 |
+>
+> 日志特征：`P941 REAL_VM_MODULE_CHANGE [t1 count2 topbitmap._bp]` 之后崩溃。
+>
+> 另外：游戏目录下的 `locks`、`UserData`（含 `SubarashikihibiHD`）、`persistent_save_slots`
+> 三个目录必须存在，引擎不会自动创建。缺了会启动被拒或初始化崩溃，可用包内 `清锁.bat` 修复。
+
 # 游戏操作教程
 
 > ⚠️ **18+ 年龄限制**
